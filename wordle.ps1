@@ -13,7 +13,7 @@ function wordvalid ($valid) {
     else {return $true}
 }
 
-function wordly ($guess) {
+function wordle ($guess) {
     for ($i=0;$i -lt $guess.length;$i++) {
     if ($guess[$i] -match $answer[$i])
             {write-host $guess[$i].ToString().ToUpper() -nonewline -BackgroundColor green; $green = $guess[$i]}
@@ -45,16 +45,16 @@ write-host "- If there is no background color, the letter is in the word."
 $n = 1
 $g =@()
 while ($n -lt 7) {
-        for ($i=0;$i -lt $g.length; $i++) {wordly $g[$i]; write-host}
+        for ($i=0;$i -lt $g.length; $i++) {wordle $g[$i]; write-host}
         do {$guess = read-host "`nGuess #$n"; $check = wordcheck $guess; $valid = wordvalid $guess}
         until ($check -eq $true -and $valid -eq $true)
-        wordly $guess
+        wordle $guess
         $g += $guess
-        if ($guess -match $answer) {clear; for ($i=0;$i -lt $g.length; $i++) {wordly $g[$i]; write-host}; write-host "`n`nWINNNNNNER!" -BackgroundColor blue; exit}
+        if ($guess -match $answer) {clear; for ($i=0;$i -lt $g.length; $i++) {wordle $g[$i]; write-host}; write-host "`n`nWINNNNNNER!" -BackgroundColor blue; exit}
         $n += 1
         clear
         }
 clear
 
-for ($i=0;$i -lt $g.length; $i++) {wordly $g[$i]; write-host}
+for ($i=0;$i -lt $g.length; $i++) {wordle $g[$i]; write-host}
 write-host "`n`nThe answer is: " -nonewline; write-host "$($answer.ToUpper())" -BackgroundColor blue
