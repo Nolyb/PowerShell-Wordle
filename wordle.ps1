@@ -37,6 +37,7 @@ function wordle ($guess) {
 $wordlisturl = "https://raw.githubusercontent.com/charlesreid1/five-letter-words/master/sgb-words.txt"
 $wordlist = Invoke-WebRequest $wordlisturl | select -ExpandProperty content
 $wordarr = $wordlist.Split()
+$answer = get-random $wordarr
 
 clear
 write-host "Welcome to the Powershell Wordle clone. Check out the real Wordle here: https://www.powerlanguage.co.uk/wordle/"
