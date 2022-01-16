@@ -16,11 +16,16 @@ function wordvalid ($valid) {
 function wordle ($guess) {
     for ($i=0;$i -lt $guess.length;$i++) {
     if ($guess[$i] -match $answer[$i])
-            {write-host $guess[$i].ToString().ToUpper() -nonewline -BackgroundColor green; $green = $guess[$i]}
+            {write-host $guess[$i].ToString().ToUpper() -nonewline -BackgroundColor green
+                $green = $guess[$i]
+            }
             else {
                 for ($j=0;$j -lt $answer.length;$j++) {
                         if ($guess[$i] -match $answer[$j] -or $guess[$i] -notmatch $green) 
-                            {write-host $guess[$i].ToString().ToUpper() -nonewline -BackgroundColor yellow; $yellow = $guess[$i]}
+                            {write-host $guess[$i].ToString().ToUpper() -nonewline -BackgroundColor yellow
+                                $yellow = $guess[$i]
+                                $j = 5
+                            }
                 }
             }
     if ($green -eq $null -and $yellow -eq $null) {write-host $guess[$i].ToString().ToUpper() -nonewline}
@@ -32,10 +37,8 @@ function wordle ($guess) {
 $wordlisturl = "https://raw.githubusercontent.com/charlesreid1/five-letter-words/master/sgb-words.txt"
 $wordlist = Invoke-WebRequest $wordlisturl | select -ExpandProperty content
 $wordarr = $wordlist.Split()
-$answer = get-random $wordarr
 
 clear
-
 write-host "Welcome to the Powershell Wordle clone. Check out the real Wordle here: https://www.powerlanguage.co.uk/wordle/"
 write-host "================="
 write-host "Instructions: Guess the 5 letter word, you have 6 tries."
