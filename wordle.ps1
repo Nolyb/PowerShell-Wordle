@@ -45,7 +45,7 @@ write-host "================="
 write-host "Instructions: Guess the 5 letter word, you have 6 tries."
 write-host "- If the background of a letter is " -nonewline; write-host "yellow" -foregroundcolor black -BackgroundColor yellow -nonewline; write-host " then that letter is in the word, but the incorrect spot."
 write-host "- If the background of a letter is " -nonewline; write-host "green" -foregroundcolor black -BackgroundColor green -nonewline; write-host " then that letter is in the word in the correct spot."
-write-host "- If there is no background color, the letter is in the word."
+write-host "- If there is no background color, the letter is not in the word."
 $n = 1
 $g =@()
 while ($n -lt 7) {
